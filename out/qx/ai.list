@@ -1,0 +1,28 @@
+# ai.list  —  policy=ai  端=qx  规则数=25
+# 由 build.ps1 从 rules/ 生成，勿手改。
+# 策略名：AI
+HOST-SUFFIX,openai.com,AI
+HOST-SUFFIX,chatgpt.com,AI
+HOST-SUFFIX,oaistatic.com,AI
+HOST-SUFFIX,oaiusercontent.com,AI
+HOST-SUFFIX,anthropic.com,AI
+HOST-SUFFIX,claude.ai,AI
+HOST-SUFFIX,huggingface.co,AI
+HOST-SUFFIX,hf.co,AI
+HOST-SUFFIX,openrouter.ai,AI
+HOST-SUFFIX,together.ai,AI
+HOST-SUFFIX,replicate.com,AI
+HOST-SUFFIX,fal.ai,AI
+HOST-SUFFIX,groq.com,AI
+HOST-SUFFIX,cohere.ai,AI
+HOST-SUFFIX,mistral.ai,AI
+HOST-SUFFIX,perplexity.ai,AI
+HOST-SUFFIX,poe.com,AI
+HOST-SUFFIX,character.ai,AI
+HOST-SUFFIX,midjourney.com,AI
+HOST-SUFFIX,stability.ai,AI
+HOST-SUFFIX,elevenlabs.io,AI
+HOST-SUFFIX,suno.com,AI
+HOST-SUFFIX,runwayml.com,AI
+HOST-SUFFIX,cursor.com,AI
+HOST-SUFFIX,cursor.sh,AI

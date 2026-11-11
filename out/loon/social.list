@@ -1,0 +1,31 @@
+# social.list  —  policy=social  端=loon  规则数=28
+# 由 build.ps1 从 rules/ 生成，勿手改。
+# 策略名：社交
+DOMAIN-SUFFIX,telegram.org,社交
+DOMAIN-SUFFIX,telegram.me,社交
+DOMAIN-SUFFIX,t.me,社交
+DOMAIN-SUFFIX,telegra.ph,社交
+DOMAIN-SUFFIX,tdesktop.com,社交
+DOMAIN-SUFFIX,x.com,社交
+DOMAIN-SUFFIX,twitter.com,社交
+DOMAIN-SUFFIX,twimg.com,社交
+DOMAIN-SUFFIX,t.co,社交
+DOMAIN-SUFFIX,facebook.com,社交
+DOMAIN-SUFFIX,fbcdn.net,社交
+DOMAIN-SUFFIX,fb.com,社交
+DOMAIN-SUFFIX,instagram.com,社交
+DOMAIN-SUFFIX,cdninstagram.com,社交
+DOMAIN-SUFFIX,threads.net,社交
+DOMAIN-SUFFIX,whatsapp.com,社交
+DOMAIN-SUFFIX,whatsapp.net,社交
+DOMAIN-SUFFIX,discord.com,社交
+DOMAIN-SUFFIX,discordapp.com,社交
+DOMAIN-SUFFIX,discordapp.net,社交
+DOMAIN-SUFFIX,discord.gg,社交
+DOMAIN-SUFFIX,discord.media,社交
+DOMAIN-SUFFIX,reddit.com,社交
+DOMAIN-SUFFIX,redd.it,社交
+DOMAIN-SUFFIX,redditmedia.com,社交
+DOMAIN-SUFFIX,redditstatic.com,社交
+DOMAIN-SUFFIX,signal.org,社交
+DOMAIN-SUFFIX,whispersystems.org,社交

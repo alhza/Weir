@@ -1,0 +1,28 @@
+# ai.list  —  policy=ai  端=loon  规则数=25
+# 由 build.ps1 从 rules/ 生成，勿手改。
+# 策略名：AI
+DOMAIN-SUFFIX,openai.com,AI
+DOMAIN-SUFFIX,chatgpt.com,AI
+DOMAIN-SUFFIX,oaistatic.com,AI
+DOMAIN-SUFFIX,oaiusercontent.com,AI
+DOMAIN-SUFFIX,anthropic.com,AI
+DOMAIN-SUFFIX,claude.ai,AI
+DOMAIN-SUFFIX,huggingface.co,AI
+DOMAIN-SUFFIX,hf.co,AI
+DOMAIN-SUFFIX,openrouter.ai,AI
+DOMAIN-SUFFIX,together.ai,AI
+DOMAIN-SUFFIX,replicate.com,AI
+DOMAIN-SUFFIX,fal.ai,AI
+DOMAIN-SUFFIX,groq.com,AI
+DOMAIN-SUFFIX,cohere.ai,AI
+DOMAIN-SUFFIX,mistral.ai,AI
+DOMAIN-SUFFIX,perplexity.ai,AI
+DOMAIN-SUFFIX,poe.com,AI
+DOMAIN-SUFFIX,character.ai,AI
+DOMAIN-SUFFIX,midjourney.com,AI
+DOMAIN-SUFFIX,stability.ai,AI
+DOMAIN-SUFFIX,elevenlabs.io,AI
+DOMAIN-SUFFIX,suno.com,AI
+DOMAIN-SUFFIX,runwayml.com,AI
+DOMAIN-SUFFIX,cursor.com,AI
+DOMAIN-SUFFIX,cursor.sh,AI

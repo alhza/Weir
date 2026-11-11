@@ -26,6 +26,10 @@ Loon 支持哪 11 种协议加自定义入口、订阅 URI 白名单的硬边界
 
 规则来源优先级为什么让订阅规则永远劣后、FINAL 是失效模式的选择而不是兜底、`[General]` 里五条因果链、跨文件契约只有策略名一处。
 
+**[app-split.md](app-split.md)** 节点筛选与分流策略。
+
+iOS 上没有按 App 分流这回事（进程规则只在 macOS 生效），所以改成按用途分组。含节点筛选的正则设计、排除词清单、以及为什么流媒体和 AI 不能挂自动切换组。
+
 **[peer-review.md](peer-review.md)** 与 iKeLee/ProxyResource 的横向对比。
 
 拆解三层策略组、`ssid` 组、`[Remote Filter]`、`[Remote Rule]` 的 tag，以及我当时判断错的三处（FakeIP 与 GEOIP 的关系、`ssid` 组能切策略、订阅规则语法）。这份文档里有自我修正，读的时候注意区分结论和当时的推理。

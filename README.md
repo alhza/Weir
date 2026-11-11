@@ -17,6 +17,8 @@ https://raw.githubusercontent.com/alhza/Weir/main/out/loon/reject.list, policy=R
 https://raw.githubusercontent.com/alhza/Weir/main/out/loon/direct.list, policy=DIRECT, tag=直连, enabled=true
 https://raw.githubusercontent.com/alhza/Weir/main/out/loon/proxy.list, policy=PROXY, tag=代理, enabled=true
 https://raw.githubusercontent.com/alhza/Weir/main/out/loon/media.list, policy=流媒体, tag=流媒体, enabled=true
+https://raw.githubusercontent.com/alhza/Weir/main/out/loon/ai.list, policy=AI, tag=AI, enabled=true
+https://raw.githubusercontent.com/alhza/Weir/main/out/loon/social.list, policy=社交, tag=社交, enabled=true
 ```
 
 ### Quantumult X
@@ -28,9 +30,11 @@ https://raw.githubusercontent.com/alhza/Weir/main/out/qx/reject.list, tag=去广
 https://raw.githubusercontent.com/alhza/Weir/main/out/qx/direct.list, tag=直连, force-policy=DIRECT, update-interval=86400, enabled=true
 https://raw.githubusercontent.com/alhza/Weir/main/out/qx/proxy.list, tag=代理, force-policy=PROXY, update-interval=86400, enabled=true
 https://raw.githubusercontent.com/alhza/Weir/main/out/qx/media.list, tag=流媒体, force-policy=流媒体, update-interval=86400, enabled=true
+https://raw.githubusercontent.com/alhza/Weir/main/out/qx/ai.list, tag=AI, force-policy=AI, update-interval=86400, enabled=true
+https://raw.githubusercontent.com/alhza/Weir/main/out/qx/social.list, tag=社交, force-policy=社交, update-interval=86400, enabled=true
 ```
 
-策略组名 `PROXY` / `流媒体` 必须在你的配置里有定义，改 `policy.json` 可以换成你自己的名字。
+策略组名 `PROXY` / `流媒体` / `AI` / `社交` 必须在你的配置里有定义，改 `policy.json` 可以换成你自己的名字。
 
 完整规范（镜像选择、固定版本、稳定性承诺）见 [docs/referencing.md](docs/referencing.md)。
 
@@ -43,9 +47,13 @@ https://raw.githubusercontent.com/alhza/Weir/main/out/qx/media.list, tag=流媒�
 | L0 | `reject.list` | REJECT | 白屏、登录失败、上传中断，**最难排查，可一键关** |
 | L1 | `direct.list` | DIRECT | 银行风控、验证码收不到、消息延迟 |
 | L3 | `proxy.list` | PROXY | 直接打不开 |
-| L4 | `media.list` | 流媒体 | 换区失败 |
+| L4 | `media.list` | 流媒体 | 换区失败、起播慢 |
+| L5 | `ai.list` | AI | 被判定为代理，拒绝服务 |
+| L6 | `social.list` | 社交 | 长连接重连、消息延迟 |
 
 REJECT 单独一层是因为它的故障形式最隐蔽。出问题时先关掉这组，再看还坏不坏。
+
+按用途分而不是按 App 分，是因为 iOS 上拿不到发起连接的进程，进程名规则只在 macOS 生效。理由和取舍写在 [app-split.md](docs/app-split.md)。
 
 ---
 

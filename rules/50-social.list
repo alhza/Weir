@@ -1,0 +1,47 @@
+#! policy: social
+#! desc: 通讯与社区。这类流量以长连接为主，追求的是稳定不是带宽。
+#! risk: low
+#! toggleable: false
+#
+# 长连接走代理会反复重连，表现为耗电和消息延迟。微信 / QQ 在 10-direct-local 里
+# 是刻意直连的；这里收的是必须代理的那批。
+
+# ---- Telegram ----
+DOMAIN-SUFFIX,telegram.org
+DOMAIN-SUFFIX,telegram.me
+DOMAIN-SUFFIX,t.me
+DOMAIN-SUFFIX,telegra.ph
+DOMAIN-SUFFIX,tdesktop.com
+
+# ---- X ----
+DOMAIN-SUFFIX,x.com
+DOMAIN-SUFFIX,twitter.com
+DOMAIN-SUFFIX,twimg.com
+DOMAIN-SUFFIX,t.co
+
+# ---- Meta ----
+DOMAIN-SUFFIX,facebook.com
+DOMAIN-SUFFIX,fbcdn.net
+DOMAIN-SUFFIX,fb.com
+DOMAIN-SUFFIX,instagram.com
+DOMAIN-SUFFIX,cdninstagram.com
+DOMAIN-SUFFIX,threads.net
+DOMAIN-SUFFIX,whatsapp.com
+DOMAIN-SUFFIX,whatsapp.net
+
+# ---- Discord ----
+DOMAIN-SUFFIX,discord.com
+DOMAIN-SUFFIX,discordapp.com
+DOMAIN-SUFFIX,discordapp.net
+DOMAIN-SUFFIX,discord.gg
+DOMAIN-SUFFIX,discord.media
+
+# ---- Reddit ----
+DOMAIN-SUFFIX,reddit.com
+DOMAIN-SUFFIX,redd.it
+DOMAIN-SUFFIX,redditmedia.com
+DOMAIN-SUFFIX,redditstatic.com
+
+# ---- Signal ----
+DOMAIN-SUFFIX,signal.org
+DOMAIN-SUFFIX,whispersystems.org

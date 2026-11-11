@@ -1,7 +1,7 @@
 {
-  "version": 1,
+  "version": 2,
   "host": "https://raw.githubusercontent.com/alhza/Weir/main/out",
-  "order": ["reject", "direct", "proxy", "media"],
+  "order": ["reject", "direct", "proxy", "media", "ai", "social"],
   "policies": {
     "reject": {
       "loon": "REJECT",
@@ -19,13 +19,25 @@
       "loon": "PROXY",
       "qx": "PROXY",
       "tag": "代理",
-      "desc": "必须代理的核心服务。"
+      "desc": "通用代理。搜索、代码托管、包管理、协作工具。"
     },
     "media": {
       "loon": "流媒体",
       "qx": "流媒体",
       "tag": "流媒体",
-      "desc": "流媒体策略组。改成你自己配置里的组名。"
+      "desc": "影视与音乐。地区绑定，不要自动切换。"
+    },
+    "ai": {
+      "loon": "AI",
+      "qx": "AI",
+      "tag": "AI",
+      "desc": "模型服务。按 IP 判风控，必须固定节点。"
+    },
+    "social": {
+      "loon": "社交",
+      "qx": "社交",
+      "tag": "社交",
+      "desc": "通讯与社区。长连接，追求稳定。"
     }
   }
 }

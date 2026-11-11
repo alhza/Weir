@@ -1,0 +1,44 @@
+#! policy: ai
+#! desc: 需要固定出口 IP 的模型服务。这类服务按 IP 判风控，频繁换出口会触发验证甚至封号。
+#! risk: low
+#! toggleable: false
+#
+# 策略上要放进 select 组并固定节点。url-test 会自动挑延迟最低的，
+# 换 IP 的代价远大于省下的那几十毫秒。
+
+# ---- OpenAI ----
+DOMAIN-SUFFIX,openai.com
+DOMAIN-SUFFIX,chatgpt.com
+DOMAIN-SUFFIX,oaistatic.com
+DOMAIN-SUFFIX,oaiusercontent.com
+
+# ---- Anthropic ----
+DOMAIN-SUFFIX,anthropic.com
+DOMAIN-SUFFIX,claude.ai
+
+# ---- 模型托管与聚合 ----
+DOMAIN-SUFFIX,huggingface.co
+DOMAIN-SUFFIX,hf.co
+DOMAIN-SUFFIX,openrouter.ai
+DOMAIN-SUFFIX,together.ai
+DOMAIN-SUFFIX,replicate.com
+DOMAIN-SUFFIX,fal.ai
+
+# ---- 推理服务 ----
+DOMAIN-SUFFIX,groq.com
+DOMAIN-SUFFIX,cohere.ai
+DOMAIN-SUFFIX,mistral.ai
+
+# ---- 对话与生成 ----
+DOMAIN-SUFFIX,perplexity.ai
+DOMAIN-SUFFIX,poe.com
+DOMAIN-SUFFIX,character.ai
+DOMAIN-SUFFIX,midjourney.com
+DOMAIN-SUFFIX,stability.ai
+DOMAIN-SUFFIX,elevenlabs.io
+DOMAIN-SUFFIX,suno.com
+DOMAIN-SUFFIX,runwayml.com
+
+# ---- 编程助手 ----
+DOMAIN-SUFFIX,cursor.com
+DOMAIN-SUFFIX,cursor.sh

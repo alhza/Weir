@@ -31,11 +31,13 @@ https://raw.githubusercontent.com/alhza/Weir/main/out/loon/reject.list, policy=R
 https://raw.githubusercontent.com/alhza/Weir/main/out/loon/direct.list, policy=DIRECT, tag=直连, enabled=true
 https://raw.githubusercontent.com/alhza/Weir/main/out/loon/proxy.list, policy=PROXY, tag=代理, enabled=true
 https://raw.githubusercontent.com/alhza/Weir/main/out/loon/media.list, policy=流媒体, tag=流媒体, enabled=true
+https://raw.githubusercontent.com/alhza/Weir/main/out/loon/ai.list, policy=AI, tag=AI, enabled=true
+https://raw.githubusercontent.com/alhza/Weir/main/out/loon/social.list, policy=社交, tag=社交, enabled=true
 ```
 
-四行的顺序就是优先级顺序，别调换。`reject` 在前是因为它的误判最难排查。
+六行的顺序就是优先级顺序，别调换。`reject` 在前是因为它的误判最难排查。
 
-`policy=` 后面的名字必须是你配置里存在的策略组。用默认值就要有 `PROXY` 和 `流媒体` 两个组，改名见 [policy.json](../policy.json)。
+`policy=` 后面的名字必须是你配置里存在的策略组。用默认值就要有 `PROXY`、`流媒体`、`AI`、`社交` 四个组，改名见 [policy.json](../policy.json)。
 
 `tag=` 不是装饰。出问题时靠它单独关掉一组，比停用整份配置快得多。
 
@@ -49,6 +51,8 @@ https://raw.githubusercontent.com/alhza/Weir/main/out/qx/reject.list, tag=去广
 https://raw.githubusercontent.com/alhza/Weir/main/out/qx/direct.list, tag=直连, force-policy=DIRECT, update-interval=86400, enabled=true
 https://raw.githubusercontent.com/alhza/Weir/main/out/qx/proxy.list, tag=代理, force-policy=PROXY, update-interval=86400, enabled=true
 https://raw.githubusercontent.com/alhza/Weir/main/out/qx/media.list, tag=流媒体, force-policy=流媒体, update-interval=86400, enabled=true
+https://raw.githubusercontent.com/alhza/Weir/main/out/qx/ai.list, tag=AI, force-policy=AI, update-interval=86400, enabled=true
+https://raw.githubusercontent.com/alhza/Weir/main/out/qx/social.list, tag=社交, force-policy=社交, update-interval=86400, enabled=true
 ```
 
 `force-policy` 会覆盖文件内每行自带的策略，所以两端的规则文件可以共用一套源。
@@ -110,9 +114,9 @@ https://cdn.jsdelivr.net/gh/alhza/Weir@a6dd19f/out/loon/proxy.list
 
 **不会变：**
 
-- `out/loon/` 与 `out/qx/` 下的文件名（`reject` / `direct` / `proxy` / `media` 四个 `.list`）
+- `out/loon/` 与 `out/qx/` 下的文件名（`reject` / `direct` / `proxy` / `media` / `ai` / `social` 六个 `.list`）
 - 文件内每行的格式：`类型,值,策略`，IP 类规则尾部可带 `no-resolve`
-- 默认策略名 `REJECT` / `DIRECT` / `PROXY` / `流媒体`
+- 默认策略名 `REJECT` / `DIRECT` / `PROXY` / `流媒体` / `AI` / `社交`
 - 行尾永远是 LF
 
 **会变，且属于正常更新：**
@@ -157,8 +161,10 @@ curl -s <proxy.list 地址> | grep -c $'\r' 应该是 0
 | --- | --- |
 | `reject.list` | 30 |
 | `direct.list` | 51 |
-| `proxy.list` | 96 |
+| `proxy.list` | 64 |
 | `media.list` | 23 |
+| `ai.list` | 28 |
+| `social.list` | 31 |
 
 行数对不上不一定是错，规则会增删。但**含 CR 的行必须是 0**，这一条是硬要求：带 `\r` 会让域名尾部多一个字符，而两端解析器都是闭源的。
 

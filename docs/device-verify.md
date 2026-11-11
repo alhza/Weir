@@ -46,8 +46,8 @@ https://www.nsloon.com/openloon/import?sub=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2
 **第一项，看配置是否被接受。**
 导入后打开配置，如果 Loon 没有弹出语法错误，说明段名和参数名都合法。这一步能抓出 `EXAMPLE_HOST` 之类没替换的占位符、写错的段名（比如把订阅写进 `[Proxy]`）。
 
-**第二项，数四条远程规则。**
-`[Remote Rule]` 段应该有四行，tag 分别是「去广告」「直连」「代理」「流媒体」。少一行说明某条被 Loon 拒绝了。
+**第二项，数六条远程规则。**
+`[Remote Rule]` 段应该有六行，tag 分别是「去广告」「直连」「代理」「流媒体」「AI」「社交」。少一行说明某条被 Loon 拒绝了。
 
 **第三项，拉一次订阅。**
 点更新订阅，然后看每条规则右侧显示的条数，应该是：
@@ -55,8 +55,10 @@ https://www.nsloon.com/openloon/import?sub=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2
 ```
 reject   30
 direct   51
-proxy    96
+proxy    64
 media    23
+ai       28
+social   31
 ```
 
 数字对不上，说明远程文件被 CDN 缓存了旧版本，或者拉取失败。这是最快能判断「规则到底有没有到手机上」的指标。
@@ -79,6 +81,8 @@ media    23
 | `weixin.qq.com` | `direct.list` 的 `weixin.qq.com` | DIRECT |
 | `google.com` | `proxy.list` 的 `google.com` | PROXY |
 | `github.com` | `proxy.list` 的 `github.com` | PROXY |
+| `claude.ai` | `ai.list` 的 `claude.ai` | AI |
+| `t.me` | `social.list` 的 `t.me` | 社交 |
 | 打开一个有广告的网站 | `reject.list` 里的域名 | REJECT |
 
 `weixin.qq.com` 那条特别值得看：它在 `direct.list` 里，如果被分到 PROXY，说明规则没加载成功，或者本地规则被别的来源盖掉了。
