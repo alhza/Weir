@@ -1,4 +1,4 @@
-#! policy: social
+#! policy: proxy-social
 #! desc: 通讯与社区。这类流量以长连接为主，追求的是稳定不是带宽。
 #! risk: low
 #! toggleable: false

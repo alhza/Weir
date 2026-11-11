@@ -1,4 +1,4 @@
-#! policy: media
+#! policy: proxy-media
 #! desc: 流媒体。独立策略组，因为流媒体节点要求与普通代理不同（带宽优先、地区要匹配）。
 #! risk: low
 #! toggleable: true

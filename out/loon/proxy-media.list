@@ -1,4 +1,4 @@
-# media.list  —  policy=media  端=loon  规则数=20
+# proxy-media.list  —  policy=proxy-media  端=loon  规则数=20
 # 由 build.ps1 从 rules/ 生成，勿手改。
 # 策略名：流媒体
 DOMAIN-SUFFIX,netflix.com,流媒体

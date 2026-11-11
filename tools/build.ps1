@@ -43,6 +43,13 @@ if (-not (Test-Path -LiteralPath $policyFile)) { throw "找不到文件: $policy
 
 $cfg = Get-Content -LiteralPath $policyFile -Raw -Encoding utf8 | ConvertFrom-Json
 
+# 策略键含连字符（proxy-media），点号访问会被当成减法，统一转成哈希表索引
+$policyTable = @{}
+foreach ($prop in $cfg.policies.PSObject.Properties) {
+    $policyTable[$prop.Name] = $prop.Value
+}
+if ($policyTable.Count -eq 0) { throw 'policy.json 里没有任何策略定义' }
+
 # 源类型 -> 各端类型。qx=$null 表示该端不支持，需降级或丢弃。
 $typeMap = @{
     'DOMAIN'          = @{ loon = 'DOMAIN';          qx = 'HOST' }
@@ -191,7 +198,7 @@ foreach ($row in $rows) {
         }
 
         # --- 策略名 ---
-        $polDef = $cfg.policies.($row.Policy)
+        $polDef = $policyTable[$row.Policy]
         if (-not $polDef) {
             throw "policy.json 里没有定义策略 '$($row.Policy)'（出现在 $($row.File)）"
         }
@@ -289,8 +296,11 @@ foreach ($t in $Target) {
     }
 
     foreach ($p in $pols) {
-        $items = $buckets[$t][$p]
-        $polName = $cfg.policies.$p.$t
+        $items  = $buckets[$t][$p]
+        $polObj = $policyTable[$p]
+        $polName = $polObj.($t)
+        # 策略键可能带连字符（proxy-media），必须用括号索引，点号会被当成减号
+        $tagName = if ($polObj.PSObject.Properties.Name -contains 'tag') { $polObj.tag } else { $p }
         $fileName = "$p.list"
 
         $header = @(
@@ -304,14 +314,12 @@ foreach ($t in $Target) {
         if ($t -eq 'loon') {
             # Loon 的 [Remote Rule] 语法：URL, policy=策略, tag=显示名, enabled=开关
             # tag 让人能在界面里单独关掉某一组，排障时最有用
-            $tagName = if ($cfg.policies.$p.PSObject.Properties.Name -contains 'tag') { $cfg.policies.$p.tag } else { $p }
             $includeLines.Add("$url, policy=$polName, tag=$tagName, enabled=true")
         } else {
-            $tagName = if ($cfg.policies.$p.PSObject.Properties.Name -contains 'tag') { $cfg.policies.$p.tag } else { $p }
             $includeLines.Add("$url, tag=$tagName, force-policy=$polName, update-interval=86400, enabled=true")
         }
 
-        $summary.Add(('{0,-6} {1,-8} {2,4} 条  ->  {3}' -f $t, $p, $items.Count, "out/$t/$fileName"))
+        $summary.Add(('{0,-6} {1,-14} {2,4} 条  ->  {3}' -f $t, $p, $items.Count, "out/$t/$fileName"))
     }
 
     $incName = if ($t -eq 'loon') { '_include.conf' } else { '_filter_remote.inc' }

@@ -1,43 +1,43 @@
 {
-  "version": 2,
+  "version": 3,
   "host": "https://raw.githubusercontent.com/alhza/Weir/main/out",
-  "order": ["reject", "direct", "proxy", "media", "ai", "social"],
+  "order": ["reject", "direct", "proxy", "proxy-media", "proxy-ai", "proxy-social"],
   "policies": {
     "reject": {
       "loon": "REJECT",
       "qx": "REJECT",
       "tag": "去广告",
-      "desc": "广告/埋点。可一键关。"
+      "desc": "拦掉。广告、埋点、归因 SDK。"
     },
     "direct": {
       "loon": "DIRECT",
       "qx": "DIRECT",
       "tag": "直连",
-      "desc": "直连。国内域名、支付、政务、IP 兜底。"
+      "desc": "直连。身份、资金、政务、长连接，以及 IP 层兜底。"
     },
     "proxy": {
       "loon": "PROXY",
       "qx": "PROXY",
       "tag": "代理",
-      "desc": "通用代理。搜索、代码托管、包管理、协作工具。"
+      "desc": "代理·通用。搜索、代码托管、包管理、协作工具，出口随便。"
     },
-    "media": {
+    "proxy-media": {
       "loon": "流媒体",
       "qx": "流媒体",
       "tag": "流媒体",
-      "desc": "影视与音乐。地区绑定，不要自动切换。"
+      "desc": "代理·地区绑定。跳区会让账号地区对不上。"
     },
-    "ai": {
+    "proxy-ai": {
       "loon": "AI",
       "qx": "AI",
       "tag": "AI",
-      "desc": "模型服务。按 IP 判风控，必须固定节点。"
+      "desc": "代理·IP 稳定。换出口会触发风控。"
     },
-    "social": {
+    "proxy-social": {
       "loon": "社交",
       "qx": "社交",
       "tag": "社交",
-      "desc": "通讯与社区。长连接，追求稳定。"
+      "desc": "代理·长连接。要求稳定，不要求出口固定。"
     }
   }
 }

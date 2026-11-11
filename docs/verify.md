@@ -53,12 +53,12 @@ https://www.nsloon.com/openloon/import?sub=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2
 点更新订阅，然后看每条规则右侧显示的条数，应该是：
 
 ```
-reject   30
-direct   51
-proxy    64
-media    23
-ai       28
-social   31
+reject       30
+direct       51
+proxy        64
+proxy-media  23
+proxy-ai     28
+proxy-social 31
 ```
 
 数字对不上，说明远程文件被 CDN 缓存了旧版本，或者拉取失败。这是最快能判断「规则到底有没有到手机上」的指标。
@@ -81,8 +81,8 @@ social   31
 | `weixin.qq.com` | `direct.list` 的 `weixin.qq.com` | DIRECT |
 | `google.com` | `proxy.list` 的 `google.com` | PROXY |
 | `github.com` | `proxy.list` 的 `github.com` | PROXY |
-| `claude.ai` | `ai.list` 的 `claude.ai` | AI |
-| `t.me` | `social.list` 的 `t.me` | 社交 |
+| `claude.ai` | `proxy-ai.list` 的 `claude.ai` | AI |
+| `t.me` | `proxy-social.list` 的 `t.me` | 社交 |
 | 打开一个有广告的网站 | `reject.list` 里的域名 | REJECT |
 
 `weixin.qq.com` 那条特别值得看：它在 `direct.list` 里，如果被分到 PROXY，说明规则没加载成功，或者本地规则被别的来源盖掉了。

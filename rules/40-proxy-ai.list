@@ -1,4 +1,4 @@
-#! policy: ai
+#! policy: proxy-ai
 #! desc: 需要固定出口 IP 的模型服务。这类服务按 IP 判风控，频繁换出口会触发验证甚至封号。
 #! risk: low
 #! toggleable: false
