@@ -2,12 +2,6 @@
 conf/*.local.conf
 conf/*.private.conf
 
-# 证书输出目录，含私钥，永不提交
-ca-out/
-
-# 生成好的配置（内嵌了 ca-p12），同样含私钥
-*-configured.conf
-
 # 构建临时产物，以及验证用的坏配置
 *.tmp
 *_test.list

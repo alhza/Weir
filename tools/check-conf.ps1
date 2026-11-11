@@ -329,25 +329,30 @@ foreach ($l in $remote) {
 # 8. MitM 自洽
 $mitmHost = $null
 $mitmP12 = $null
+$mitmEnable = $null
 foreach ($l in $mitm) {
-    if ($l -match '^\s*hostname\s*=\s*(?<v>.*)$') { $mitmHost = $Matches['v'].Trim() }
-    if ($l -match '^\s*ca-p12\s*=\s*(?<v>.*)$')    { $mitmP12  = $Matches['v'].Trim() }
+    if ($l -match '^\s*hostname\s*=\s*(?<v>.*)$')  { $mitmHost   = $Matches['v'].Trim() }
+    if ($l -match '^\s*ca-p12\s*=\s*(?<v>.*)$')    { $mitmP12    = $Matches['v'].Trim() }
+    if ($l -match '^\s*enable\s*=\s*(?<v>.*)$')    { $mitmEnable = $Matches['v'].Trim() }
 }
-if ($mitmHost) {
-    if (-not $mitmP12) {
-        Add-Warn "[MitM] hostname 有值但 ca-p12 为空 —— 官方要求填 P12 的完整 Base64，留空 MitM 不会工作。用 tools/gen-ca.ps1 生成，再用 tools/emit-mitm-conf.ps1 嵌入"
-    } elseif ($mitmP12.Length -lt 500) {
-        Add-Warn "[MitM] ca-p12 只有 $($mitmP12.Length) 个字符，不像完整的 P12 Base64（一般在 3000 字符左右）。可能是占位符没替换"
+$mitmOn = $mitmEnable -and ($mitmEnable -match '^(true|1|yes)$')
+if ($mitmOn) {
+    if (-not $mitmHost) {
+        Add-Warn "[MITM] enable=true 但 hostname 为空：开了 MitM 却没有要解密的域名"
     }
     if ($mitmHost -match '^\s*\*\s*$') {
-        Add-Err "[MitM] hostname 写成 * 等于解密全部流量，性能和故障面都不划算"
+        Add-Err "[MITM] hostname 写成 * 等于解密全部流量，性能和故障面都不划算"
     }
-    if (-not (Get-GeneralValue 'real-ip')) {
-        Add-Note "[MitM] 已启用，但没配 real-ip。FakeIP 下部分域名的证书校验可能异常"
+    if (-not $mitmP12) {
+        Add-Note "[MITM] 已开启且 ca-p12 为空 —— 用 App 内管理的证书。确认系统里两步都做了：装描述文件 + 在证书信任设置里打开开关"
+    } elseif ($mitmP12.Length -lt 500) {
+        Add-Warn "[MITM] ca-p12 只有 $($mitmP12.Length) 个字符，不像完整的 P12 Base64（一般 3000 左右）"
     }
+} elseif ($mitmHost) {
+    Add-Note "[MITM] hostname 有值但 enable 不是 true，MitM 不会生效"
 }
 if ($mitmP12 -and -not $mitmHost) {
-    Add-Warn "[Mitm] 配了 ca-p12 但 hostname 为空：没有任何域名会被解密"
+    Add-Warn "[MITM] 配了 ca-p12 但 hostname 为空：没有任何域名会被解密"
 }
 
 # 9. 策略组之间的引用
