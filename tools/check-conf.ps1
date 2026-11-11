@@ -334,13 +334,16 @@ foreach ($l in $mitm) {
     if ($l -match '^\s*ca-p12\s*=\s*(?<v>.*)$')    { $mitmP12  = $Matches['v'].Trim() }
 }
 if ($mitmHost) {
-    # ca-p12 留空是正常的，App 内管理证书时这一段本来就该空
-    Add-Note "[Mitm] 已启用 hostname。确认 iOS 上两步都做了：装描述文件 + 在证书信任设置里信任。缺一步所有 HTTPS 会失败"
-    if ($mitmHost -match '^\s*\*\s*$') {
-        Add-Err "[Mitm] hostname 写成 * 等于解密全部流量，性能和故障面都不划算"
+    if (-not $mitmP12) {
+        Add-Warn "[MitM] hostname 有值但 ca-p12 为空 —— 官方要求填 P12 的完整 Base64，留空 MitM 不会工作。用 tools/gen-ca.ps1 生成，再用 tools/emit-mitm-conf.ps1 嵌入"
+    } elseif ($mitmP12.Length -lt 500) {
+        Add-Warn "[MitM] ca-p12 只有 $($mitmP12.Length) 个字符，不像完整的 P12 Base64（一般在 3000 字符左右）。可能是占位符没替换"
     }
-    if ($mitmHost -notmatch '\*' -and $mitmHost -match '^\s*[a-z0-9-]+\.[a-z]+\s*$') {
-        Add-Note "[Mitm] hostname 只有裸域名，子域不会解密。需要子域时加 *.$(($mitmHost -split ',')[0].Trim())"
+    if ($mitmHost -match '^\s*\*\s*$') {
+        Add-Err "[MitM] hostname 写成 * 等于解密全部流量，性能和故障面都不划算"
+    }
+    if (-not (Get-GeneralValue 'real-ip')) {
+        Add-Note "[MitM] 已启用，但没配 real-ip。FakeIP 下部分域名的证书校验可能异常"
     }
 }
 if ($mitmP12 -and -not $mitmHost) {

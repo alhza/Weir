@@ -46,33 +46,67 @@ Loon 首页或设置页找到证书管理，点生成 CA 证书，然后点安�
 
 ---
 
-## 三、配置怎么写
+## 三、`ca-p12` 是必填项
+
+官方文档写得很明确：
+
+| 参数 | 说明 |
+| --- | --- |
+| `hostname` | 需要解密的域名，逗号分隔，支持 `*` `?` 通配，域名前加 `-` 表示排除 |
+| `ca-p12` | CA 证书和私钥的 P12 文件内容，**标准 Base64 编码后的完整单行字符串** |
+| `ca-passphrase` | 导出该 P12 时设置的密码 |
+
+**留空不会让 App 兜底，MitM 就是不工作。** 这一点很容易误会，因为很多客户端是「App 内管证书」的设计，而 Loon 要求证书写进配置。
 
 ```ini
-[Mitm]
-hostname = %APPEND% example.com, *.example.com
-ca-p12 =
-ca-passphrase =
+[MitM]
+hostname = %APPEND% example.com, *.example.org, -private.example.org
+ca-p12 = <P12 的完整 Base64，单行>
+ca-passphrase = <P12 密码>
 skip-server-cert-verify = false
 ```
 
-**`%APPEND%`** 表示追加到已有列表而不是覆盖。多个配置源共享证书时要用它。
+`%APPEND%` 表示追加到已有列表而不是覆盖。多个配置源共享证书时要用它。
 
-**`ca-p12` 留空**，交给 App 内的证书管理。除非你要把证书固定进配置分发，否则不建议在这里填 base64。
-
-**`hostname` 是最关键的**，支持 `*` 通配：
-
-```
-*.example.com        匹配所有子域，不含 example.com 本身
-example.com          只匹配裸域名
-*.example.com, example.com   两个都要写才对
-```
-
-**`skip-server-cert-verify = false`** 保持 false。设成 true 会让 Loon 不校验上游证书，等于关掉了中间人的基本保证。
+`skip-server-cert-verify` 保持 `false`，设成 true 等于关掉对上游证书的校验。
 
 ---
 
-## 四、边界
+## 四、生成与嵌入
+
+仓库里的模板 `ca-p12` 是空的，因为 **P12 含私钥，不可能公开提交**。要自己生成，两步。
+
+**第一步，生成证书：**
+
+```powershell
+pwsh tools/gen-ca.ps1 -CommonName "Weir MitM CA" -Password "你的密码"
+```
+
+产出三样，都在 `ca-out/`：
+
+```
+ca.p12              P12 文件
+ca.crt              给 iOS 安装的证书
+ca-p12.base64.txt   单行 Base64，填 ca-p12 用的
+```
+
+脚本会自检：证书带私钥、`CA:TRUE`、有效期 10 年。
+
+**第二步，嵌进配置：**
+
+```powershell
+pwsh tools/emit-mitm-conf.ps1 -Password "你的密码"
+```
+
+输出 `ca-out/loon-configured.conf`，`ca-p12` 已经填好，可以直接导入 Loon。
+
+密码必须和生成时一致，脚本会先解一次 P12 验证，解不开直接报错，不会产出一份坏配置。
+
+**这两个文件都在 `.gitignore` 里。** P12 含私钥，泄露等于任何人都能解密你的流量。
+
+---
+
+## 五、边界
 
 **越少越好。** `hostname` 每多一个域名，就多一条被解密的流量。写成 `*` 等于解密全部，性能和风险都不划算。
 
@@ -86,7 +120,7 @@ example.com          只匹配裸域名
 
 ---
 
-## 五、排障
+## 六、排障
 
 **装了证书但复写不生效**：先看第二步的信任开关有没有打开。再看 `hostname` 是否匹配，通配符 `*.a.com` 不包含 `a.com` 本身。
 
@@ -98,7 +132,7 @@ example.com          只匹配裸域名
 
 ---
 
-## 六、什么时候回来加
+## 七、什么时候回来加
 
 等你要做下面任一件事：
 
