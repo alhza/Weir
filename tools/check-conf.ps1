@@ -333,8 +333,15 @@ foreach ($l in $mitm) {
     if ($l -match '^\s*hostname\s*=\s*(?<v>.*)$') { $mitmHost = $Matches['v'].Trim() }
     if ($l -match '^\s*ca-p12\s*=\s*(?<v>.*)$')    { $mitmP12  = $Matches['v'].Trim() }
 }
-if ($mitmHost -and -not $mitmP12) {
-    Add-Warn "[Mitm] 配了 hostname 但没有 ca-p12：证书没装，HTTPS 流量无法解密，复写规则不会生效"
+if ($mitmHost) {
+    # ca-p12 留空是正常的，App 内管理证书时这一段本来就该空
+    Add-Note "[Mitm] 已启用 hostname。确认 iOS 上两步都做了：装描述文件 + 在证书信任设置里信任。缺一步所有 HTTPS 会失败"
+    if ($mitmHost -match '^\s*\*\s*$') {
+        Add-Err "[Mitm] hostname 写成 * 等于解密全部流量，性能和故障面都不划算"
+    }
+    if ($mitmHost -notmatch '\*' -and $mitmHost -match '^\s*[a-z0-9-]+\.[a-z]+\s*$') {
+        Add-Note "[Mitm] hostname 只有裸域名，子域不会解密。需要子域时加 *.$(($mitmHost -split ',')[0].Trim())"
+    }
 }
 if ($mitmP12 -and -not $mitmHost) {
     Add-Warn "[Mitm] 配了 ca-p12 但 hostname 为空：没有任何域名会被解密"

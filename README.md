@@ -72,6 +72,7 @@ docs/           设计、引用规范、协议、验证
 - [design.md](docs/design.md)：判定链、iOS 没有按 App 分流、出口要求决定组类型、FINAL 与失效模式、`[General]` 因果链、节点筛选
 - [referencing.md](docs/referencing.md)：**权威来源**，地址、语法、镜像与版本、稳定性承诺。与其他文档冲突时以它为准
 - [protocols.md](docs/protocols.md)：Loon 支持哪些代理协议、不支持哪些、各实现的开源许可
+- [mitm.md](docs/mitm.md)：CA 证书与 MitM。什么时候需要、iOS 两步安装、`hostname` 白名单的边界
 - [verify.md](docs/verify.md)：在 iPhone 上导入并逐项验证
 
 ---
