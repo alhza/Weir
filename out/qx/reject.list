@@ -1,0 +1,30 @@
+# reject.list  —  policy=reject  端=qx  规则数=27
+# 由 build.ps1 从 rules/ 生成，勿手改。
+# 策略名：REJECT
+HOST-SUFFIX,doubleclick.net,REJECT
+HOST-SUFFIX,googlesyndication.com,REJECT
+HOST-SUFFIX,googleadservices.com,REJECT
+HOST,adservice.google.com,REJECT
+HOST,app-measurement.com,REJECT
+HOST-SUFFIX,adjust.com,REJECT
+HOST-SUFFIX,appsflyer.com,REJECT
+HOST-SUFFIX,kochava.com,REJECT
+HOST-SUFFIX,umeng.com,REJECT
+HOST-SUFFIX,umengcloud.com,REJECT
+HOST-SUFFIX,talkingdata.com,REJECT
+HOST,hm.baidu.com,REJECT
+HOST-SUFFIX,cnzz.com,REJECT
+HOST-SUFFIX,miaozhen.com,REJECT
+HOST-SUFFIX,admaster.com.cn,REJECT
+HOST-SUFFIX,applovin.com,REJECT
+HOST-SUFFIX,ironsrc.com,REJECT
+HOST-SUFFIX,ironsource.mobi,REJECT
+HOST-SUFFIX,unityads.unity3d.com,REJECT
+HOST-SUFFIX,vungle.com,REJECT
+HOST-SUFFIX,chartboost.com,REJECT
+HOST-SUFFIX,inmobi.com,REJECT
+HOST-SUFFIX,startapp.com,REJECT
+HOST-SUFFIX,tapjoy.com,REJECT
+HOST-SUFFIX,supersonicads.com,REJECT
+HOST-SUFFIX,pangle.io,REJECT
+HOST-SUFFIX,googletagmanager.com,REJECT

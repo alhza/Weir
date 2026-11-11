@@ -1,0 +1,13 @@
+# 统一 LF。规则文件带 \r 可能导致域名匹配失败，
+# 而 Loon / QX 的解析器都是闭源的，不能赌它会 strip。
+* text=auto eol=lf
+
+*.list text eol=lf
+*.conf text eol=lf
+*.inc  text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
+*.ps1  text eol=lf
+
+*.png binary
+*.jpg binary

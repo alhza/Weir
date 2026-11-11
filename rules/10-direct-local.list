@@ -1,0 +1,59 @@
+#! policy: direct
+#! desc: 身份、资金、政务、长连接。这一层的误判代价最高：风控、验证码收不到、消息延迟。
+#! risk: high
+#! toggleable: true
+#
+# 原则：只收「必须直连」的，不收「直连更快」的（后者放 20-direct-cn）。
+
+# ---- 长连接 IM：走代理会反复重连，表现为耗电 + 消息延迟 ----
+DOMAIN-SUFFIX,weixin.qq.com
+DOMAIN-SUFFIX,wechat.com
+DOMAIN-SUFFIX,qpic.cn
+DOMAIN-SUFFIX,gtimg.cn
+DOMAIN-SUFFIX,qq.com
+DOMAIN-SUFFIX,dingtalk.com
+DOMAIN-SUFFIX,dingtalkapps.com
+
+# ---- 支付 ----
+DOMAIN-SUFFIX,alipay.com
+DOMAIN-SUFFIX,alipayobjects.com
+DOMAIN-SUFFIX,tenpay.com
+DOMAIN-SUFFIX,unionpay.com
+DOMAIN-SUFFIX,95516.com
+
+# ---- 银行 ----
+DOMAIN-SUFFIX,icbc.com.cn
+DOMAIN-SUFFIX,ccb.com
+DOMAIN-SUFFIX,abchina.com
+DOMAIN-SUFFIX,bankofchina.com
+DOMAIN-SUFFIX,boc.cn
+DOMAIN-SUFFIX,cmbchina.com
+DOMAIN-SUFFIX,bankcomm.com
+DOMAIN-SUFFIX,spdb.com.cn
+DOMAIN-SUFFIX,cib.com.cn
+DOMAIN-SUFFIX,cmbc.com.cn
+DOMAIN-SUFFIX,psbc.com
+DOMAIN-SUFFIX,cgbchina.com.cn
+DOMAIN-SUFFIX,bank.pingan.com
+
+# ---- 政务 / 公共服务 ----
+DOMAIN-SUFFIX,gov.cn
+DOMAIN-SUFFIX,12306.cn
+DOMAIN-SUFFIX,95306.cn
+DOMAIN-SUFFIX,chinatax.gov.cn
+DOMAIN-SUFFIX,chsi.com.cn
+
+# ---- 运营商 ----
+DOMAIN-SUFFIX,10086.cn
+DOMAIN-SUFFIX,10010.com
+DOMAIN-SUFFIX,189.cn
+DOMAIN-SUFFIX,chinaunicom.com
+
+# ---- 实名/风控类：走代理容易触发异地登录 ----
+DOMAIN-SUFFIX,aliyun.com
+DOMAIN-SUFFIX,alicdn.com
+DOMAIN-SUFFIX,taobao.com
+DOMAIN-SUFFIX,tmall.com
+DOMAIN-SUFFIX,jd.com
+DOMAIN-SUFFIX,pinduoduo.com
+DOMAIN-SUFFIX,yangkeduo.com

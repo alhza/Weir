@@ -1,0 +1,23 @@
+# media.list  —  policy=media  端=loon  规则数=20
+# 由 build.ps1 从 rules/ 生成，勿手改。
+# 策略名：流媒体
+DOMAIN-SUFFIX,netflix.com,流媒体
+DOMAIN-SUFFIX,nflxvideo.net,流媒体
+DOMAIN-SUFFIX,nflximg.net,流媒体
+DOMAIN-SUFFIX,nflxext.com,流媒体
+DOMAIN-SUFFIX,nflxso.net,流媒体
+DOMAIN-SUFFIX,disneyplus.com,流媒体
+DOMAIN-SUFFIX,disney-plus.net,流媒体
+DOMAIN-SUFFIX,dssott.com,流媒体
+DOMAIN-SUFFIX,bamgrid.com,流媒体
+DOMAIN-SUFFIX,hbomax.com,流媒体
+DOMAIN-SUFFIX,max.com,流媒体
+DOMAIN-SUFFIX,primevideo.com,流媒体
+DOMAIN-SUFFIX,aiv-cdn.net,流媒体
+DOMAIN-SUFFIX,media-amazon.com,流媒体
+DOMAIN-SUFFIX,spotify.com,流媒体
+DOMAIN-SUFFIX,scdn.co,流媒体
+DOMAIN-SUFFIX,spotifycdn.com,流媒体
+DOMAIN-SUFFIX,abema.tv,流媒体
+DOMAIN-SUFFIX,niconico.jp,流媒体
+DOMAIN-SUFFIX,nicovideo.jp,流媒体

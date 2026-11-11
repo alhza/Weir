@@ -1,0 +1,49 @@
+#! policy: reject
+#! desc: 广告 / 埋点 / 归因 SDK。误杀表现为白屏、登录失败、上传中断，最难排查的一组。
+#! risk: high
+#! toggleable: true
+#
+# 原则：只收「纯广告网络」，不收可能承担业务功能的域名。
+# 带 ⚠ 的行属于「可能有副作用」，出问题先去掉这些。
+
+# ---- Google 广告栈 ----
+DOMAIN-SUFFIX,doubleclick.net
+DOMAIN-SUFFIX,googlesyndication.com
+DOMAIN-SUFFIX,googleadservices.com
+DOMAIN,adservice.google.com
+DOMAIN,app-measurement.com
+
+# ---- 归因 / 增长追踪 ----
+DOMAIN-SUFFIX,adjust.com
+DOMAIN-SUFFIX,appsflyer.com
+DOMAIN-SUFFIX,kochava.com
+
+# ---- 国内统计 ----
+DOMAIN-SUFFIX,umeng.com
+DOMAIN-SUFFIX,umengcloud.com
+DOMAIN-SUFFIX,talkingdata.com
+DOMAIN,hm.baidu.com
+DOMAIN-SUFFIX,cnzz.com
+DOMAIN-SUFFIX,miaozhen.com
+DOMAIN-SUFFIX,admaster.com.cn
+
+# ---- 海外广告 SDK ----
+DOMAIN-SUFFIX,applovin.com
+DOMAIN-SUFFIX,ironsrc.com
+DOMAIN-SUFFIX,ironsource.mobi
+DOMAIN-SUFFIX,unityads.unity3d.com
+DOMAIN-SUFFIX,vungle.com
+DOMAIN-SUFFIX,chartboost.com
+DOMAIN-SUFFIX,inmobi.com
+DOMAIN-SUFFIX,startapp.com
+DOMAIN-SUFFIX,tapjoy.com
+DOMAIN-SUFFIX,supersonicads.com
+DOMAIN-SUFFIX,pangle.io
+
+# ---- ⚠ 有副作用，默认保留，坏了先删这几条 ----
+# ⚠ GTM 偶尔承载站点功能逻辑
+DOMAIN-SUFFIX,googletagmanager.com
+# ⚠ 部分 App 用 Branch 做深度链接与登录回调，误杀会导致「点链接打不开 App」
+# DOMAIN-SUFFIX,branch.io
+# ⚠ 部分 App 依赖 Facebook Graph 完成第三方登录
+# DOMAIN-SUFFIX,graph.facebook.com

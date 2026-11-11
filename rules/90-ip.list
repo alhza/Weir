@@ -1,0 +1,27 @@
+#! policy: direct
+#! desc: IP 层兜底。注意这一层在 FakeIP 模式下大部分时间不生效——见文件末尾说明。
+#! risk: low
+#! toggleable: true
+
+# ---- 中国大陆 ASN ----
+# 不加 no-resolve：这是兜底，需要 Loon 解析域名后拿到 IP 才能判定。
+# 加了 no-resolve 就只对「直接用 IP 访问」生效，等于摆设。
+IP-ASN,4134,no-resolve
+IP-ASN,4837,no-resolve
+IP-ASN,9808,no-resolve
+IP-ASN,4538,no-resolve
+IP-ASN,4808,no-resolve
+IP-ASN,9929,no-resolve
+
+# GEOIP 兜底放在配置文件里（conf/loon.conf / conf/qx.conf），不放订阅规则，
+# 因为它需要跟随 FINAL 的位置调整。
+#
+# ---- 关于 FakeIP 下 IP 规则失效 ----
+# Loon 默认用 FakeIP 截获 App 自己发起的 DNS 请求，返回假地址再映射回域名。
+# 这意味着：
+#   1. 域名规则 Normal 命中（Loon 会先把假 IP 还原成域名）；
+#   2. 但 IP 规则拿到的是假 IP，ASN / GEOIP 判定必然失败。
+# 所以 IP 层实际只在两种情况下起作用：
+#   a. 请求本来就是裸 IP（App 内置硬编码 IP、游戏、P2P）；
+#   b. 域名命中 real-ip 列表，Loon 返回了真实 IP。
+# 结论：不要把分流正确性寄托在 IP 层。域名规则才是主力。

@@ -1,0 +1,23 @@
+# media.list  —  policy=media  端=qx  规则数=20
+# 由 build.ps1 从 rules/ 生成，勿手改。
+# 策略名：流媒体
+HOST-SUFFIX,netflix.com,流媒体
+HOST-SUFFIX,nflxvideo.net,流媒体
+HOST-SUFFIX,nflximg.net,流媒体
+HOST-SUFFIX,nflxext.com,流媒体
+HOST-SUFFIX,nflxso.net,流媒体
+HOST-SUFFIX,disneyplus.com,流媒体
+HOST-SUFFIX,disney-plus.net,流媒体
+HOST-SUFFIX,dssott.com,流媒体
+HOST-SUFFIX,bamgrid.com,流媒体
+HOST-SUFFIX,hbomax.com,流媒体
+HOST-SUFFIX,max.com,流媒体
+HOST-SUFFIX,primevideo.com,流媒体
+HOST-SUFFIX,aiv-cdn.net,流媒体
+HOST-SUFFIX,media-amazon.com,流媒体
+HOST-SUFFIX,spotify.com,流媒体
+HOST-SUFFIX,scdn.co,流媒体
+HOST-SUFFIX,spotifycdn.com,流媒体
+HOST-SUFFIX,abema.tv,流媒体
+HOST-SUFFIX,niconico.jp,流媒体
+HOST-SUFFIX,nicovideo.jp,流媒体

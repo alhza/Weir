@@ -1,0 +1,9 @@
+# 填了真实订阅地址或节点信息的本地配置，别提交
+conf/*.local.conf
+conf/*.private.conf
+
+# 开发工具与设计文档，只保留在本地
+_dev/
+
+# 构建临时
+*.tmp

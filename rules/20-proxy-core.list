@@ -1,0 +1,122 @@
+#! policy: proxy
+#! desc: 必须走代理的核心服务。默认直连策略下的「白名单」，漏一条就是打不开。
+#! risk: low
+#! toggleable: false
+#
+# 原则：只收「确定被墙」或「确定需要境外出口」的主域。
+# 不要在这里写 DOMAIN-KEYWORD —— 它是唯一会拖慢匹配速度的规则类型。
+
+# ---- Google ----
+DOMAIN-SUFFIX,google.com
+DOMAIN-SUFFIX,googleapis.com
+DOMAIN-SUFFIX,gstatic.com
+DOMAIN-SUFFIX,googleusercontent.com
+DOMAIN-SUFFIX,googlevideo.com
+DOMAIN-SUFFIX,ggpht.com
+DOMAIN-SUFFIX,gvt1.com
+DOMAIN-SUFFIX,gvt2.com
+DOMAIN-SUFFIX,google.dev
+
+# ---- YouTube ----
+DOMAIN-SUFFIX,youtube.com
+DOMAIN-SUFFIX,youtu.be
+DOMAIN-SUFFIX,ytimg.com
+DOMAIN-SUFFIX,youtube-nocookie.com
+
+# ---- 代码托管 ----
+DOMAIN-SUFFIX,github.com
+DOMAIN-SUFFIX,githubusercontent.com
+DOMAIN-SUFFIX,githubassets.com
+DOMAIN-SUFFIX,github.io
+DOMAIN-SUFFIX,githubapp.com
+DOMAIN-SUFFIX,ghcr.io
+DOMAIN-SUFFIX,gitlab.com
+DOMAIN-SUFFIX,bitbucket.org
+
+# ---- AI ----
+DOMAIN-SUFFIX,openai.com
+DOMAIN-SUFFIX,chatgpt.com
+DOMAIN-SUFFIX,oaistatic.com
+DOMAIN-SUFFIX,oaiusercontent.com
+DOMAIN-SUFFIX,anthropic.com
+DOMAIN-SUFFIX,claude.ai
+DOMAIN-SUFFIX,huggingface.co
+DOMAIN-SUFFIX,hf.co
+
+# ---- 社交 / 通讯 ----
+DOMAIN-SUFFIX,telegram.org
+DOMAIN-SUFFIX,telegram.me
+DOMAIN-SUFFIX,t.me
+DOMAIN-SUFFIX,telegra.ph
+DOMAIN-SUFFIX,tdesktop.com
+DOMAIN-SUFFIX,x.com
+DOMAIN-SUFFIX,twitter.com
+DOMAIN-SUFFIX,twimg.com
+DOMAIN-SUFFIX,t.co
+DOMAIN-SUFFIX,facebook.com
+DOMAIN-SUFFIX,fbcdn.net
+DOMAIN-SUFFIX,instagram.com
+DOMAIN-SUFFIX,cdninstagram.com
+DOMAIN-SUFFIX,whatsapp.com
+DOMAIN-SUFFIX,whatsapp.net
+DOMAIN-SUFFIX,discord.com
+DOMAIN-SUFFIX,discordapp.com
+DOMAIN-SUFFIX,discordapp.net
+DOMAIN-SUFFIX,discord.gg
+DOMAIN-SUFFIX,discord.media
+DOMAIN-SUFFIX,reddit.com
+DOMAIN-SUFFIX,redd.it
+DOMAIN-SUFFIX,redditmedia.com
+DOMAIN-SUFFIX,redditstatic.com
+
+# ---- 百科 / 内容 ----
+DOMAIN-SUFFIX,wikipedia.org
+DOMAIN-SUFFIX,wikimedia.org
+DOMAIN-SUFFIX,medium.com
+DOMAIN-SUFFIX,archive.org
+DOMAIN-SUFFIX,archiveofourown.org
+DOMAIN-SUFFIX,pixiv.net
+DOMAIN-SUFFIX,pximg.net
+DOMAIN-SUFFIX,danbooru.donmai.us
+DOMAIN-SUFFIX,soundcloud.com
+
+# ---- 开发 / 包管理 ----
+DOMAIN-SUFFIX,stackoverflow.com
+DOMAIN-SUFFIX,stackexchange.com
+DOMAIN-SUFFIX,sstatic.net
+DOMAIN-SUFFIX,npmjs.com
+DOMAIN-SUFFIX,npmjs.org
+DOMAIN-SUFFIX,yarnpkg.com
+DOMAIN-SUFFIX,pypi.org
+DOMAIN-SUFFIX,pythonhosted.org
+DOMAIN-SUFFIX,python.org
+DOMAIN-SUFFIX,docker.com
+DOMAIN-SUFFIX,docker.io
+DOMAIN-SUFFIX,rust-lang.org
+DOMAIN-SUFFIX,crates.io
+DOMAIN-SUFFIX,go.dev
+DOMAIN-SUFFIX,golang.org
+DOMAIN-SUFFIX,nodejs.org
+DOMAIN-SUFFIX,gradle.org
+
+# ---- 协作 / SaaS ----
+DOMAIN-SUFFIX,notion.so
+DOMAIN-SUFFIX,notion.site
+DOMAIN-SUFFIX,notion-static.com
+DOMAIN-SUFFIX,figma.com
+DOMAIN-SUFFIX,slack.com
+DOMAIN-SUFFIX,slack-edge.com
+DOMAIN-SUFFIX,zoom.us
+DOMAIN-SUFFIX,proton.me
+DOMAIN-SUFFIX,protonmail.com
+
+# ---- 搜索 ----
+DOMAIN-SUFFIX,duckduckgo.com
+# cn.bing.com 国内可直连，走代理反而慢 —— 单行覆盖到直连
+DOMAIN,cn.bing.com @direct
+DOMAIN-SUFFIX,bing.com
+
+# ---- 云 / 平台 ----
+DOMAIN-SUFFIX,kaggle.com
+DOMAIN-SUFFIX,coursera.org
+DOMAIN-SUFFIX,udemy.com

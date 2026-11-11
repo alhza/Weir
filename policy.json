@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "host": "https://EXAMPLE_HOST/rules",
+  "order": ["reject", "direct", "proxy", "media"],
+  "policies": {
+    "reject": {
+      "loon": "REJECT",
+      "qx": "REJECT",
+      "desc": "广告/埋点。可一键关。"
+    },
+    "direct": {
+      "loon": "DIRECT",
+      "qx": "DIRECT",
+      "desc": "直连。国内域名、支付、政务、IP 兜底。"
+    },
+    "proxy": {
+      "loon": "PROXY",
+      "qx": "PROXY",
+      "desc": "必须代理的核心服务。"
+    },
+    "media": {
+      "loon": "流媒体",
+      "qx": "流媒体",
+      "desc": "流媒体策略组。改成你自己配置里的组名。"
+    }
+  }
+}

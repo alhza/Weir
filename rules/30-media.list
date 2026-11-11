@@ -1,0 +1,36 @@
+#! policy: media
+#! desc: 流媒体。独立策略组，因为流媒体节点要求与普通代理不同（带宽优先、地区要匹配）。
+#! risk: low
+#! toggleable: true
+
+# ---- Netflix ----
+DOMAIN-SUFFIX,netflix.com
+DOMAIN-SUFFIX,nflxvideo.net
+DOMAIN-SUFFIX,nflximg.net
+DOMAIN-SUFFIX,nflxext.com
+DOMAIN-SUFFIX,nflxso.net
+
+# ---- Disney+ ----
+DOMAIN-SUFFIX,disneyplus.com
+DOMAIN-SUFFIX,disney-plus.net
+DOMAIN-SUFFIX,dssott.com
+DOMAIN-SUFFIX,bamgrid.com
+
+# ---- HBO / Max ----
+DOMAIN-SUFFIX,hbomax.com
+DOMAIN-SUFFIX,max.com
+
+# ---- Prime Video ----
+DOMAIN-SUFFIX,primevideo.com
+DOMAIN-SUFFIX,aiv-cdn.net
+DOMAIN-SUFFIX,media-amazon.com
+
+# ---- Spotify ----
+DOMAIN-SUFFIX,spotify.com
+DOMAIN-SUFFIX,scdn.co
+DOMAIN-SUFFIX,spotifycdn.com
+
+# ---- 日本 ----
+DOMAIN-SUFFIX,abema.tv
+DOMAIN-SUFFIX,niconico.jp
+DOMAIN-SUFFIX,nicovideo.jp
