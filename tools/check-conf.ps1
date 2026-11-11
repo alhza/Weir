@@ -238,6 +238,26 @@ function Get-GeneralValue([string]$key) {
     return $null
 }
 
+# 0. [General] 里是否有未经官方文档确认的键
+# Loon 遇到不认识的键可能整份拒收，症状是「导入后配置空白」，
+# 而且客户端通常不报错，只留一份空配置。
+$knownGeneral = @(
+    'ipv6', 'dns-server', 'doh-server', 'doq-server', 'doh3-server',
+    'allow-wifi-access', 'wifi-access-http-port', 'wifi-access-socks5-port',
+    'proxy-test-url', 'internet-test-url', 'test-timeout',
+    'switch-node-after-failure-times', 'resource-parser', 'ssid-trigger',
+    'real-ip', 'interface-mode', 'force-http-engine-hosts', 'disable-udp-ports',
+    'disable-stun', 'geoip-url', 'bypass-tun', 'skip-proxy'
+)
+foreach ($l in $general) {
+    if ($l -match '^\s*(?<k>[\w-]+)\s*=') {
+        $k = $Matches['k'].ToLowerInvariant()
+        if ($knownGeneral -notcontains $k) {
+            Add-Warn "[General] 的键 '$k' 不在官方文档确认的列表内 —— Loon 可能因此整份拒收（症状是导入后空白）。未经验证的键先注释掉，逐个加回验证"
+        }
+    }
+}
+
 # 1. FakeIP / real-ip
 $realIp = Get-GeneralValue 'real-ip'
 if (-not $realIp) {
