@@ -2,8 +2,7 @@
 conf/*.local.conf
 conf/*.private.conf
 
-# 开发工具与设计文档，只保留在本地
-_dev/
-
-# 构建临时
+# 构建临时产物，以及验证用的坏配置
 *.tmp
+*_test.list
+*_test.conf
