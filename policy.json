@@ -1,26 +1,30 @@
 {
   "version": 1,
-  "host": "https://EXAMPLE_HOST/rules",
+  "host": "https://raw.githubusercontent.com/alhza/Weir/main/out",
   "order": ["reject", "direct", "proxy", "media"],
   "policies": {
     "reject": {
       "loon": "REJECT",
       "qx": "REJECT",
+      "tag": "去广告",
       "desc": "广告/埋点。可一键关。"
     },
     "direct": {
       "loon": "DIRECT",
       "qx": "DIRECT",
+      "tag": "直连",
       "desc": "直连。国内域名、支付、政务、IP 兜底。"
     },
     "proxy": {
       "loon": "PROXY",
       "qx": "PROXY",
+      "tag": "代理",
       "desc": "必须代理的核心服务。"
     },
     "media": {
       "loon": "流媒体",
       "qx": "流媒体",
+      "tag": "流媒体",
       "desc": "流媒体策略组。改成你自己配置里的组名。"
     }
   }
