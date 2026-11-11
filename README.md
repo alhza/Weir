@@ -32,6 +32,8 @@ https://raw.githubusercontent.com/alhza/Weir/main/out/qx/media.list, tag=流媒�
 
 策略组名 `PROXY` / `流媒体` 必须在你的配置里有定义，改 `policy.json` 可以换成你自己的名字。
 
+完整规范（镜像选择、固定版本、稳定性承诺）见 [docs/referencing.md](docs/referencing.md)。
+
 ---
 
 ## 分层
@@ -74,10 +76,14 @@ REJECT 单独一层是因为它的故障形式最隐蔽。出问题时先关掉�
 
 ## 文档
 
-- [协议全景](docs/protocols.md)：Loon 支持与不支持哪些代理协议、怎么选型、各实现的开源许可
+**[引用规范](docs/referencing.md)** 是权威来源：地址、语法、镜像与版本策略、稳定性承诺。其他文档与它冲突时以它为准。
+
+- [文档索引](docs/README.md)：按性质分为规范、指南、参考、分析四类
+- [引用规范](docs/referencing.md)：怎么被引用，哪些改动算破坏性变更
+- [设备验证](docs/device-verify.md)：在 iPhone 上导入并逐项验证
+- [协议全景](docs/protocols.md)：Loon 支持哪些代理协议、怎么选型、各实现的开源许可
 - [配置设计](docs/config-design.md)：规则来源优先级、FINAL 的取舍、`[General]` 里的因果链
 - [横向对比](docs/peer-review.md)：与 iKeLee/ProxyResource 的架构差异，以及我判断错的地方
-- [设备验证](docs/device-verify.md)：在 iPhone 上导入并逐项验证这套规则
 
 ---
 
